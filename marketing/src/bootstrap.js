@@ -6,8 +6,10 @@ import App from './App';
 // MOUNT FUNCTION TO START UP THE APP
 const mount = (el, { onNavigate }) => {
   const history = createMemoryHistory();
-
-  history.listen(onNavigate);
+  
+  if (onNavigate){
+    history.listen(onNavigate);
+  }
 
   ReactDom.render( <App history={history} />, el );
 };
@@ -17,7 +19,7 @@ const mount = (el, { onNavigate }) => {
 if(process.env.NODE_ENV === 'development') {
   const devRoot = document.querySelector('#_marketing-dev-root');
   if (devRoot){
-    mount(devRoot);
+    mount(devRoot, {});
   }
 }
 
